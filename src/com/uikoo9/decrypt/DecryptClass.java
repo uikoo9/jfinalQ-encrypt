@@ -1,10 +1,11 @@
 package com.uikoo9.decrypt;
 
-import com.uikoo9.util.Util;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class DecryptClass {
 	
@@ -16,7 +17,9 @@ public class DecryptClass {
 	 */
 	public static String decrypt(String sDir, String pDir) {
 		String res = "解密失败！";
-		String dDir = pDir + (pDir.endsWith(File.separator) ? "" : File.separator) + "decrypt" + Util.dateStr();
+		String dDir = pDir 
+				+ (pDir.endsWith(File.separator) ? "" : File.separator) 
+				+ "decrypt" + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
 		try {
 			int errors = copy(sDir, dDir);
 			if (errors == 0)
@@ -70,8 +73,8 @@ public class DecryptClass {
 	 */
 	public static void copyClass(String srcDir, String destDir) throws IOException {
 		FileInputStream in = new FileInputStream(srcDir);
-		FileOutputStream out = new FileOutputStream(Util.changeFileExt(destDir,
-				"class"));
+		FileOutputStream out = new FileOutputStream(destDir);
+		
 		int ch;
 		while ((ch = in.read()) != -1) {
 			out.write((byte) (ch - 2));

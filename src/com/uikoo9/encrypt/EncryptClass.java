@@ -1,10 +1,11 @@
 package com.uikoo9.encrypt;
 
-import com.uikoo9.util.Util;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class EncryptClass {
 	
@@ -18,7 +19,7 @@ public class EncryptClass {
 		String res = "加密失败！";
 		String dDir = pDir
 				+ (pDir.endsWith(File.separator) ? "" : File.separator)
-				+ "encrypt" + Util.dateStr();
+				+ "encrypt" + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
 		try {
 			int errors = copy(sDir, dDir);
 			if (errors == 0)
@@ -90,7 +91,7 @@ public class EncryptClass {
 	 */
 	public static void copyClass(String srcDir, String destDir) throws IOException {
 		FileInputStream in = new FileInputStream(srcDir);
-		FileOutputStream out = new FileOutputStream(Util.changeFileExt(destDir, "uikoo9"));
+		FileOutputStream out = new FileOutputStream(destDir);
 		
 		int ch;
 		while ((ch = in.read()) != -1) {

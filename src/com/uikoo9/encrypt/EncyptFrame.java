@@ -13,8 +13,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 
-import com.uikoo9.util.Util;
-
 @SuppressWarnings("serial")
 public class EncyptFrame extends JFrame {
 	private JButton choicePathButton;
@@ -98,7 +96,7 @@ public class EncyptFrame extends JFrame {
 
 	private void encryptButtonActionPerformed(ActionEvent evt) {
 		String path = this.sourcePathTF.getText();
-		if (Util.isEmpty(path)) {
+		if (path == null || path.trim().equals("")){
 			JOptionPane.showMessageDialog(this, "请选择源码文件夹！");
 		} else {
 			this.choicePathButton.setEnabled(false);
