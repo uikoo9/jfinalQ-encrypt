@@ -42,6 +42,8 @@ public class QEncryptFrame extends javax.swing.JFrame {
 		jButton1 = new javax.swing.JButton();
 		jButton2 = new javax.swing.JButton();
 		jButton3 = new javax.swing.JButton();
+		
+		this.jFileChooser1.setFileSelectionMode(1);
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		setTitle("jfinalQ\u52a0\u5bc6\u90e8\u7f72\u5de5\u5177by uikoo9");
