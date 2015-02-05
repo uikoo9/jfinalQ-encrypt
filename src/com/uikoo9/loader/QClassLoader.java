@@ -8,27 +8,31 @@ import java.util.Properties;
 
 import org.apache.catalina.loader.WebappClassLoader;
 
-public class UClassLoader extends WebappClassLoader {
-	private String containPackage;
-	private String basePath;
+public class QClassLoader extends WebappClassLoader {
+	private String encryptedPackage;
+	private String encryptedPath;
 
-	public UClassLoader() {
+	public QClassLoader() {
 	}
 
-	public UClassLoader(ClassLoader parent) {
+	public QClassLoader(ClassLoader parent) {
 		super(parent);
 		readProperties();
 	}
 
 	public Class<?> findClass(String name) throws ClassNotFoundException {
-		if (name.contains(this.containPackage)) {
-			return findClassEncrypt(name);
+		boolean flag = false;
+		
+		for(String s : encryptedPackage.split(",")){
+			if (name.contains(s)) {
+				flag = true;
+			}
 		}
-		return super.findClass(name);
+		
+		return flag ? findClassEncrypt(name) : super.findClass(name);
 	}
 
-	private Class<?> findClassEncrypt(String name)
-			throws ClassNotFoundException {
+	private Class<?> findClassEncrypt(String name) throws ClassNotFoundException {
 		byte[] classBytes = (byte[]) null;
 		try {
 			classBytes = loadClassBytesEncrypt(name);
@@ -43,7 +47,7 @@ public class UClassLoader extends WebappClassLoader {
 	}
 
 	private byte[] loadClassBytesEncrypt(String name) throws IOException {
-		String cname = this.basePath + name.replace('.', '/') + ".uikoo9";
+		String cname = this.encryptedPath + name.replace('.', '/') + ".uikoo9";
 		FileInputStream in = new FileInputStream(cname);
 		try {
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -52,21 +56,21 @@ public class UClassLoader extends WebappClassLoader {
 				buffer.write((byte) (ch - 2));
 			}
 			in.close();
-			byte[] arrayOfByte = buffer.toByteArray();
-			return arrayOfByte;
+			
+			return buffer.toByteArray();
 		} finally {
 			in.close();
 		}
 	}
 
 	private void readProperties() {
-		InputStream in = UClassLoader.class.getResourceAsStream("loader.properties");
+		InputStream in = QClassLoader.class.getResourceAsStream("loader.properties");
 		Properties p = new Properties();
 		try {
 			try {
 				p.load(in);
-				this.containPackage = p.getProperty("package", "ebeiwai");
-				this.basePath = p.getProperty("basepath", "Z:/program/workspaces/_work_03_mui/WebRoot/WEB-INF/classes/");
+				this.encryptedPackage = p.getProperty("encrypted_package", "uikoo9");
+				this.encryptedPath = p.getProperty("encrypted_class_path", "Z:/workspaces/jfinalq_01_blog/WebRoot/WEB-INF/classes/");
 			} finally {
 				in.close();
 			}
