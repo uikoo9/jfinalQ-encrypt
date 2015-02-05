@@ -1,4 +1,4 @@
-package com.uikoo9.encrypt;
+package com.uikoo9.encrypt.util;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class EncryptClass {
+public class QEncryptClassUtil {
 	
 	/**
 	 * 加密
