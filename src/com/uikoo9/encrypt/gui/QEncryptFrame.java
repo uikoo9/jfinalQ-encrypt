@@ -48,6 +48,8 @@ public class QEncryptFrame extends javax.swing.JFrame {
 
 		jLabel1.setText("\u5f85\u64cd\u4f5c\u6587\u4ef6\u5939");
 
+		jTextField1.setEditable(false);
+
 		jButton1.setText("\u9009\u62e9");
 		jButton1.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,14 +125,15 @@ public class QEncryptFrame extends javax.swing.JFrame {
 
 	private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
 		String path = this.jTextField1.getText();
-		if (path == null || path.trim().equals("")){
+		if (path == null || path.trim().equals("")) {
 			JOptionPane.showMessageDialog(this, "请选择待操作文件夹！");
 		} else {
 			this.jButton1.setEnabled(false);
 			this.jButton2.setEnabled(false);
 			this.jButton3.setEnabled(false);
 
-			JOptionPane.showMessageDialog(this, QDecryptClassUtil.decrypt(this.sDir, this.pDir));
+			JOptionPane.showMessageDialog(this,
+					QDecryptClassUtil.decrypt(this.sDir, this.pDir));
 
 			this.jButton1.setEnabled(true);
 			this.jButton2.setEnabled(true);
@@ -147,7 +150,8 @@ public class QEncryptFrame extends javax.swing.JFrame {
 			this.jButton2.setEnabled(false);
 			this.jButton3.setEnabled(false);
 
-			JOptionPane.showMessageDialog(this, QEncryptClassUtil.encrypt(this.sDir, this.pDir));
+			JOptionPane.showMessageDialog(this,
+					QEncryptClassUtil.encrypt(this.sDir, this.pDir));
 
 			this.jButton1.setEnabled(true);
 			this.jButton2.setEnabled(true);
