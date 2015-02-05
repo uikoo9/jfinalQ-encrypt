@@ -66,24 +66,6 @@ public class QEncryptClassUtil {
 	}
 	
 	/**
-	 * 复制普通文件
-	 * @param srcDir 源文件目录
-	 * @param destDir 复制后文件目录
-	 * @throws IOException
-	 */
-	public static void copyFile(String srcDir, String destDir) throws IOException {
-		FileInputStream in = new FileInputStream(srcDir);
-		FileOutputStream out = new FileOutputStream(destDir);
-		int ch;
-		while ((ch = in.read()) != -1) {
-			out.write((byte) ch);
-		}
-
-		in.close();
-		out.close();
-	}
-
-	/**
 	 * 复制class文件并进行移位
 	 * @param srcDir 源代码目录
 	 * @param destDir 复制后代码目录
@@ -95,7 +77,25 @@ public class QEncryptClassUtil {
 		
 		int ch;
 		while ((ch = in.read()) != -1) {
-			out.write((byte) (ch + 2));
+			out.write(QClassUtil.encrypt(ch));
+		}
+
+		in.close();
+		out.close();
+	}
+	
+	/**
+	 * 复制普通文件
+	 * @param srcDir 源文件目录
+	 * @param destDir 复制后文件目录
+	 * @throws IOException
+	 */
+	public static void copyFile(String srcDir, String destDir) throws IOException {
+		FileInputStream in = new FileInputStream(srcDir);
+		FileOutputStream out = new FileOutputStream(destDir);
+		int ch;
+		while ((ch = in.read()) != -1) {
+			out.write((byte) ch);
 		}
 
 		in.close();

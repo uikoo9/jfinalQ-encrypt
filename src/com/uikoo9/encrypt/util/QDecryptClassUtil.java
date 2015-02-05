@@ -77,7 +77,7 @@ public class QDecryptClassUtil {
 		
 		int ch;
 		while ((ch = in.read()) != -1) {
-			out.write((byte) (ch - 2));
+			out.write(QClassUtil.decrypt(ch));
 		}
 
 		in.close();
