@@ -8,6 +8,8 @@ import java.util.Properties;
 
 import org.apache.catalina.loader.WebappClassLoader;
 
+import com.uikoo9.encrypt.util.QClassUtil;
+
 public class QClassLoader extends WebappClassLoader {
 	private String encryptedPackage;
 	private String encryptedPath;
@@ -53,7 +55,7 @@ public class QClassLoader extends WebappClassLoader {
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
 			int ch;
 			while ((ch = in.read()) != -1) {
-				buffer.write((byte) (ch - 2));
+				buffer.write(QClassUtil.decrypt(ch));
 			}
 			in.close();
 			
