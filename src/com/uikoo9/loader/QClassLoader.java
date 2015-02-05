@@ -47,7 +47,7 @@ public class QClassLoader extends WebappClassLoader {
 	}
 
 	private byte[] loadClassBytesEncrypt(String name) throws IOException {
-		String cname = this.encryptedPath + name.replace('.', '/') + ".uikoo9";
+		String cname = this.encryptedPath + name.replace('.', '/') + ".class";
 		FileInputStream in = new FileInputStream(cname);
 		try {
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream();

@@ -54,7 +54,7 @@ public class DecryptClass {
 				copy(newPath, newCopyPath);
 			}
 		} else if (filePath.isFile()) {
-			if (filePath.toString().endsWith(".uikoo9"))
+			if (filePath.toString().endsWith(".class"))
 				copyClass(srcDir, destDir);
 			else
 				copyFile(srcDir, destDir);
