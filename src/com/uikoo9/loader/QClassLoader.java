@@ -8,7 +8,7 @@ import java.util.Properties;
 
 import org.apache.catalina.loader.WebappClassLoader;
 
-import com.uikoo9.encrypt.util.QClassUtil;
+import com.uikoo9.QClassUtil;
 
 public class QClassLoader extends WebappClassLoader {
 	private String encryptedPackage;

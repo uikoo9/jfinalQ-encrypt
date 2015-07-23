@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.uikoo9.QClassUtil;
+
 public class QDecryptClassUtil {
 	
 	/**
