@@ -1,3 +1,7 @@
+注意
+---
+gitosc停止更新，转移到github：[https://github.com/uikoo9/jfinalQ](https://github.com/uikoo9/jfinalQ)
+
 jfinalQ-encrypt
 ==========================================
 1. jfinalQ加密部署工具
